@@ -1,5 +1,6 @@
 const path = require("path");
 const nodeExternals = require("webpack-node-externals");
+const WebpackShellPlugin = require("webpack-shell-plugin");
 
 const { NODE_ENV = "production" } = process.env;
 
@@ -23,5 +24,10 @@ module.exports = {
     ]
   },
   externals: [nodeExternals()],
-  watch: NODE_ENV === "development"
+  watch: NODE_ENV === "development",
+  plugins: [
+    new WebpackShellPlugin({
+      onBuildEnd: ["yarn serve"]
+    })
+  ]
 };
