@@ -4,13 +4,9 @@
   "main": "src/server.ts",
   "license": "MIT",
   "scripts": {
-    "tsc": "tsc",
-    "type-check": "tsc --noEmit",
-    "type-check:watch": "yarn type-check -- --watch",
-    "build": "yarn build:types && yarn build:js",
-    "build:types": "tsc --emitDeclarationOnly",
-    "build:js": "babel src --out-dir dist --extensions \".ts,.tsx\" --source-maps inline",
-    "dev": "yarn build && nodemon dist/server"
+    "tsc": "tsc --noEmit --watch",
+    "build": "NODE_ENV=development webpack",
+    "dev": "nodemon dist/server"
   },
   "dependencies": {
     "@types/compression": "^1.0.1",
@@ -31,6 +27,10 @@
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
-    "@babel/preset-typescript": "^7.3.3"
+    "@babel/preset-typescript": "^7.3.3",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.7",
+    "webpack-node-externals": "^1.7.2"
   }
 }
